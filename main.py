@@ -113,17 +113,10 @@ def extract_json_from_text(text, dynamic_model, api_key=None):
         dict: Extracted structured data
     
     Raises:
-        ValueError: If API key is not found
         Exception: If LLM call fails
     """
-    if not api_key:
-        api_key = os.getenv('GROQ_API_KEY')
-    
-    if not api_key:
-        raise ValueError("GROQ_API_KEY not found in environment variables. Please set it in .env file.")
-    
     try:
-        llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0, api_key=api_key)
+        llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
         structured_llm = llm.with_structured_output(dynamic_model)
         
         print("\nExtracting structured data using Groq LLM...")
