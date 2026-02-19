@@ -16,7 +16,7 @@ def create_dynamic_schema(fields_config):  ##this function dynamically create py
     return create_model('DynamicExtraction', **dynamic_fields)
 
 
-def get_schema_from_user():
+def get_schema_from_user():                                                                                                                                                                                             
     print("\n=== Define Your Schema ===")
     fields_config = {}
     
@@ -55,6 +55,7 @@ def main():
     text = ""
     for page in doc:
         text += page.get_text()
+        
     
     llm = ChatGroq(model="llama-3.3-70b-versatile", temperature=0)
     structured_llm = llm.with_structured_output(DynamicModel)
